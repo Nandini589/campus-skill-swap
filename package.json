@@ -1,0 +1,20 @@
+{
+  "name": "campus-skill-swap-crud",
+  "version": "1.0.0",
+  "description": "Simple CRUD website: HTML/CSS/JS + Express + MongoDB (Campus Skill Swap Board)",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": ["crud", "express", "mongodb", "mongoose"],
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "mongoose": "^8.8.0"
+  }
+}

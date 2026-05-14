@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Campus Skill Swap Board</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="bg-pattern" aria-hidden="true"></div>
+    <header class="site-header">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">◇</span>
+        <div>
+          <h1>Campus Skill Swap with nandini </h1>
+          <p class="tagline">Teach something · Learn something · Meet on campus</p>
+        </div>
+      </div>
+      <p class="intro">
+        Post a short swap: what you can offer, what you want back, and a safe contact hint (insta handle,
+        email fragment, etc.). Data lives in <strong>MongoDB</strong> via this site’s API.
+      </p>
+    </header>
+
+    <main class="layout">
+      <section class="panel form-panel" aria-labelledby="form-title">
+        <h2 id="form-title" class="panel-title">Add or edit a swap</h2>
+        <p id="form-status" class="status" role="status"></p>
+        <form id="swap-form" class="swap-form" novalidate>
+          <input type="hidden" id="edit-id" />
+          <label class="field">
+            <span>Title <abbr title="required">*</abbr></span>
+            <input name="title" id="title" required maxlength="120" placeholder="e.g. Python help for guitar basics" />
+          </label>
+          <label class="field">
+            <span>Skill you offer</span>
+            <input name="skillOffered" id="skillOffered" placeholder="e.g. Python debugging" />
+          </label>
+          <label class="field">
+            <span>Skill you want</span>
+            <input name="skillWanted" id="skillWanted" placeholder="e.g. Acoustic guitar intro" />
+          </label>
+          <label class="field">
+            <span>Contact hint</span>
+            <input name="contactHint" id="contactHint" placeholder="e.g. @you on campus app" />
+          </label>
+          <label class="field checkbox">
+            <input type="checkbox" id="pinned" name="pinned" />
+            <span>Pin this card to the top</span>
+          </label>
+          <div class="form-actions">
+            <button type="submit" class="btn primary" id="submit-btn">Publish swap</button>
+            <button type="button" class="btn ghost" id="cancel-edit" hidden>Cancel edit</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="panel list-panel" aria-labelledby="list-title">
+        <div class="list-toolbar">
+          <h2 id="list-title" class="panel-title">Open swaps</h2>
+          <div class="toolbar-controls">
+            <label class="search">
+              <span class="sr-only">Search</span>
+              <input type="search" id="search" placeholder="Search title or skills…" autocomplete="off" />
+            </label>
+            <label class="sort">
+              <span>Sort</span>
+              <select id="sort">
+                <option value="newest">Newest first</option>
+                <option value="oldest">Oldest first</option>
+                <option value="az">Title A–Z</option>
+              </select>
+            </label>
+          </div>
+        </div>
+        <p id="list-status" class="status" role="status"></p>
+        <ul id="swap-list" class="swap-list"></ul>
+        <template id="card-template">
+          <li class="swap-card">
+            <div class="card-top">
+              <h3 class="card-title"></h3>
+              <span class="pin-badge" hidden>Pinned</span>
+            </div>
+            <dl class="card-meta">
+              <div>
+                <dt>Offers</dt>
+                <dd class="offers"></dd>
+              </div>
+              <div>
+                <dt>Wants</dt>
+                <dd class="wants"></dd>
+              </div>
+              <div>
+                <dt>Contact</dt>
+                <dd class="contact"></dd>
+              </div>
+            </dl>
+            <p class="card-date"></p>
+            <div class="card-actions">
+              <button type="button" class="btn small ghost toggle-pin">Pin</button>
+              <button type="button" class="btn small ghost edit">Edit</button>
+              <button type="button" class="btn small danger delete">Delete</button>
+            </div>
+          </li>
+        </template>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Stack: HTML/CSS/JS → Express REST → MongoDB (Mongoose). Run locally with <code>npm start</code>.</p>
+    </footer>
+
+    <script src="/js/app.js" defer></script>
+  </body>
+</html>
